@@ -116,3 +116,69 @@ weather_df |>
 
 ```
 
+```{r}
+
+weather_df |>
+  ggplot(aes(x = tmin, y = tmax)) +
+  #geom_hex() not using this bc i have to install the package for it
+  geom_point(color = "#b22222")
+```
+
+## univariate plots
+
+```{r}
+
+weather_df |>
+  ggplot(aes(x = tmin)) +
+  geom_histogram(color = "white", fill = "green")
+
+weather_df |>
+  ggplot(aes(x = tmin, fill = name)) +
+  geom_histogram() +
+  facet_grid(. ~ name)
+
+```
+
+density plot
+
+```{r}
+
+weather_df |>
+  ggplot(aes(x = tmin, fill = name)) +
+  geom_density(alpha = 0.2)
+
+```
+
+box plot
+
+```{r}
+
+weather_df |>
+  ggplot(aes(x = name, y = tmin)) +
+  geom_boxplot(aes(fill = name))
+
+```
+
+violin plot
+
+```{r}
+
+weather_df |>
+  ggplot(aes(x = name, y = tmin, fill = name)) +
+  geom_violin()
+
+```
+
+ridge plot
+
+```{r}
+
+weather_df |>
+  ggplot(aes(x = tmin, y = name, fill = name)) +
+  geom_density_ridges(alpha = 0.2)
+
+```
+
+LA univariate plots
+
+

@@ -187,3 +187,100 @@ weather_df |>
     ## `geom_smooth()` using formula = 'y ~ x'
 
 ![](viz_1_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+``` r
+weather_df |>
+  ggplot(aes(x = tmin, y = tmax)) +
+  #geom_hex() not using this bc i have to install the package for it
+  geom_point(color = "#b22222")
+```
+
+    ## Warning: Removed 17 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
+## univariate plots
+
+``` r
+weather_df |>
+  ggplot(aes(x = tmin)) +
+  geom_histogram(color = "white", fill = "green")
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_bin()`).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+``` r
+weather_df |>
+  ggplot(aes(x = tmin, fill = name)) +
+  geom_histogram() +
+  facet_grid(. ~ name)
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_bin()`).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-12-2.png)<!-- -->
+
+density plot
+
+``` r
+weather_df |>
+  ggplot(aes(x = tmin, fill = name)) +
+  geom_density(alpha = 0.2)
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_density()`).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+
+box plot
+
+``` r
+weather_df |>
+  ggplot(aes(x = name, y = tmin)) +
+  geom_boxplot(aes(fill = name))
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
+violin plot
+
+``` r
+weather_df |>
+  ggplot(aes(x = name, y = tmin, fill = name)) +
+  geom_violin()
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_ydensity()`).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+
+ridge plot
+
+``` r
+weather_df |>
+  ggplot(aes(x = tmin, y = name, fill = name)) +
+  geom_density_ridges(alpha = 0.2)
+```
+
+    ## Picking joint bandwidth of 1.41
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_density_ridges()`).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
+LA univariate plots
