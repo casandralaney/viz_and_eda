@@ -181,4 +181,44 @@ weather_df |>
 
 LA univariate plots
 
+```{r}
+
+weather_df |>
+  ggplot(aes(x = prcp, fill = name)) +
+  geom_density(alpha = 0.2)
+
+weather_df |>
+  ggplot(aes(x = prcp, fill = name)) +
+  geom_histogram() +
+  facet_grid(name ~.)
+
+weather_df |>
+  filter(prcp > 5, prcp < 1000) |>
+  ggplot(aes(x = prcp, fill = name)) +
+  geom_density(alpha = 0.2)
+
+```
+
+Saving plots
+
+```{r}
+ggp_weather_violin = 
+  weather_df |>
+  ggplot(aes(x = name, y = tmin, fill = name)) +
+    geom_violin()
+
+ggp_weather_violin
+
+ggsave("violin_plot.pdf", ggp_weather_violin,
+       width = 8, height = 6)
+
+```
+
+Embedding plots
+
+```{r, fig.width = 6, fig.height = 4}
+
+ggp_weather_violin
+
+```
 

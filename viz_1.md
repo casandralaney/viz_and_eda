@@ -284,3 +284,72 @@ weather_df |>
 ![](viz_1_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 LA univariate plots
+
+``` r
+weather_df |>
+  ggplot(aes(x = prcp, fill = name)) +
+  geom_density(alpha = 0.2)
+```
+
+    ## Warning: Removed 15 rows containing non-finite outside the scale range
+    ## (`stat_density()`).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+
+``` r
+weather_df |>
+  ggplot(aes(x = prcp, fill = name)) +
+  geom_histogram() +
+  facet_grid(name ~.)
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+    ## Warning: Removed 15 rows containing non-finite outside the scale range
+    ## (`stat_bin()`).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-17-2.png)<!-- -->
+
+``` r
+weather_df |>
+  filter(prcp > 5, prcp < 1000) |>
+  ggplot(aes(x = prcp, fill = name)) +
+  geom_density(alpha = 0.2)
+```
+
+![](viz_1_files/figure-gfm/unnamed-chunk-17-3.png)<!-- -->
+
+Saving plots
+
+``` r
+ggp_weather_violin = 
+  weather_df |>
+  ggplot(aes(x = name, y = tmin, fill = name)) +
+    geom_violin()
+
+ggp_weather_violin
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_ydensity()`).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+
+``` r
+ggsave("violin_plot.pdf", ggp_weather_violin,
+       width = 8, height = 6)
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_ydensity()`).
+
+Embedding plots
+
+``` r
+ggp_weather_violin
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_ydensity()`).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
