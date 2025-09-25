@@ -37,3 +37,34 @@ weather_df |>
 
 ```
 
+```{r}
+
+ggp_weather_scatterplot =
+  weather_df |>
+    ggplot(aes(x = tmin, y = tmax)) +
+    geom_point()
+
+ggp_weather_scatterplot
+
+```
+
+Check that some rows are missing
+
+```{r}
+
+weather_df |>
+  filter(is.na(tmax))
+
+```
+
+## Fancier Scatterplots!
+
+```{r}
+
+weather_df |>
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth()
+
+```
+
