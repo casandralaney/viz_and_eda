@@ -1,0 +1,39 @@
+---
+title: "Viz 1"
+author: "Casandra Laney"
+date: "2025-09-25"
+output: github_document
+---
+
+```{r}
+
+library(tidyverse)
+library(ggridges)
+
+```
+
+Import the weather data
+
+```{r}
+
+library(p8105.datasets)
+data("weather_df")
+
+```
+
+Making our first plot
+```{r}
+
+ggplot(weather_df, aes(x = tmin, y =tmax)) +
+  geom_point()
+
+```
+
+```{r}
+
+weather_df |>
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_point()
+
+```
+
