@@ -1,0 +1,82 @@
+---
+title: "eda"
+author: "Casandra Laney"
+date: "2025-10-02"
+output:
+  html_document:
+    df_print: paged
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+
+```{r}
+library(p8105.datasets)
+data("weather_df")
+
+weather_df = 
+  weather_df |>
+  mutate(
+    month = lubridate::floor_date(date, unit = "month"))
+```
+
+
+```{r}
+
+# make plots
+weather_df |> 
+  ggplot(aes(x = prcp)) + 
+  geom_histogram()
+
+# check on extreme values
+weather_df |> 
+  filter(prcp >= 1000)
+
+
+# look at the data again
+weather_df |> 
+  filter(tmax >= 20, tmax <= 30) |> 
+  ggplot(aes(x = tmin, y = tmax, color = name, shape = name)) + 
+  geom_point(alpha = .75)
+```
+
+
+```{r}
+weather_df |>
+  group_by(name, month)
+```
+
+## More interesting summaries
+
+Compute extra stuff
+
+```{r}
+weather_df |>
+  group_by(month) |>
+  summarize(
+    mean_tmax = mean(tmax, na.rm = TRUE),
+    mean_prec = mean(prcp, na.rm = TRUE),
+    median_tmax = median(tmax),
+    sd_tmax = sd(tmax))
+```
+
